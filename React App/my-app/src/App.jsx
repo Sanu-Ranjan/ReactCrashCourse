@@ -3,31 +3,38 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  function MyButton() {
-    return (
-      <>
-        <button onClick={() => setCount(count + 1)}>Click To increment</button>
-      </>
-    );
-  }
-
-  function MyNumber() {
-    return (
-      <>
-        <p>{count}</p>
-      </>
-    );
+  function submitHandler(e) {
+    e.preventDefault();
+    console.log(email, password);
   }
 
   return (
     <>
       <div className="container">
-        <MyButton className="button"></MyButton>
-        <button onClick={() => setCount(count - 1)}>Decrease Count</button>
-        <br />
-        <MyNumber></MyNumber>
+        <form onSubmit={submitHandler}>
+          <label htmlFor="email">
+            Enter Email ID:{" "}
+            <input
+              type="email"
+              name="email"
+              id="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </label>
+          <label htmlFor="password">
+            Enter Password:{" "}
+            <input
+              type="password"
+              name="password"
+              id="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </label>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </>
   );
